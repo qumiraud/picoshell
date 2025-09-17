@@ -58,7 +58,11 @@ int	picoshell(char **args[])
 			return (1);
 		pid = fork();
 		if (pid == -1)
+		{
+			close (pipefd[0]);
+			close (pipefd[1]);
 			return (1);
+		}
 		else if (pid == 0)
 		{
 			if (prevfd != -1)
